@@ -42,7 +42,7 @@ Below is the HTML structure used in this example:
     </script>
 </body>
 </html>
-# javascript
+```javascript
 const parent = React.createElement("div", { id: "parent" }, [
     React.createElement("div", { id: "child", key: "1" }, "I am Child Div"),
     React.createElement("h1", { key: "2" }, "H1 Tag"),
