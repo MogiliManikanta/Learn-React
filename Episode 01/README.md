@@ -1,11 +1,3 @@
-# Episode 1
-# Project Name
-
-## Episode 01: Introduction to React
-
-### Code Example
-
-
 # Project Name
 
 ## Episode 01: Introduction to React
@@ -42,7 +34,6 @@ Below is the HTML structure used in this example:
     </script>
 </body>
 </html>
-```javascript
 const parent = React.createElement("div", { id: "parent" }, [
     React.createElement("div", { id: "child", key: "1" }, "I am Child Div"),
     React.createElement("h1", { key: "2" }, "H1 Tag"),
@@ -58,8 +49,6 @@ const child = React.createElement("div", { id: "child2" }, [
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(parent);
 
-
-## Output
 I am Child Div
 H1 Tag
 h2 Tag
