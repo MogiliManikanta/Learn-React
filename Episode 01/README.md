@@ -53,3 +53,26 @@ I am Child Div
 H1 Tag
 h2 Tag
 Paragraph
+
+
+
+# Parcel
+    -Dev Build
+    -Local Server
+    -Refersh
+    HMR = Hot Module Replacement
+    File Watching Algorithm - Written in c++ 
+    Caching - Faster Builds
+    Image Optimization
+    minification
+    Bundling
+    Compress
+    Consistent Hashing
+    Code Splitting
+    Differential Bundling - Support Older Browsers
+    Diagnostic
+    Error Handling
+    HTTPS
+    Tree Shaking - remove unused code
+    different dev and production bundles
+    
