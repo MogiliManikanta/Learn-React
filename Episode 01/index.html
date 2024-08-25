@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Episode 1</title>
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
     <!-- Move the root elements higher in the DOM -->
     <div id="root"></div>
     <div id="root1"></div>
@@ -16,13 +16,13 @@
     <!-- <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> -->
 
     <!-- Then load your custom script -->
-    <script type="module"  src="App.js"></script>
+    <script type="module" src="App.js"></script>
 
     <!-- Inline script for the root1 div -->
     <script>
-        const parent1 = document.createElement("div");
-        parent1.innerText = "This is a div tag using JavaScript";
-        document.getElementById("root1").appendChild(parent1);
+      const parent1 = document.createElement("div");
+      parent1.innerText = "This is a div tag using JavaScript";
+      document.getElementById("root1").appendChild(parent1);
     </script>
-</body>
+  </body>
 </html>
