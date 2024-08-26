@@ -1,0 +1,33 @@
+{
+  "name": "episode04",
+  "version": "1.0.0",
+  "description": "Talk is Cheap Show Me your Code",
+  "scripts": {
+    "test": "jest",
+    "start": "npx parcel index.html",
+    "build": "npx parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MogiliManikanta/Learn-React.git"
+  },
+  "keywords": [
+    "namaste",
+    "React",
+    "MAnikanta"
+  ],
+  "author": "manikanta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MogiliManikanta/Learn-React/issues"
+  },
+  "homepage": "https://github.com/MogiliManikanta/Learn-React#readme",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  }
+}
