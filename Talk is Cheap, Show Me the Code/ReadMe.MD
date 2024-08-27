@@ -1,7 +1,7 @@
 # Header
 
--Logo
--Nav Items
+    - Logo
+    - Nav Items
 
 # Body
 
