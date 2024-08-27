@@ -1,0 +1,148 @@
+let resList = [
+  {
+    id: 1,
+    name: "Margherita Pizza",
+    image:
+      "https://e7.pngegg.com/pngimages/692/99/png-clipart-delicious-food-food-salad-thumbnail.png",
+    cuisines: ["Italian"],
+    avgRating: 4.5,
+    deliveryTime: 30,
+    restaurantName: "Pizza Paradise",
+    cost: 12.99,
+    veg: true,
+  },
+  {
+    id: 2,
+    name: "Chicken Biryani",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS6BD8AIhe84FBpmnQpPHOHJrTgYprZtdr9A&s",
+    cuisines: ["Indian"],
+    avgRating: 4.2,
+    deliveryTime: 45,
+    restaurantName: "Spice Junction",
+    cost: 10.99,
+    veg: false,
+  },
+  {
+    id: 3,
+    name: "Vegetable Stir-Fry",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS6BD8AIhe84FBpmnQpPHOHJrTgYprZtdr9A&s",
+    cuisines: ["Chinese"],
+    avgRating: 4.0,
+    deliveryTime: 35,
+    restaurantName: "Wok Master",
+    cost: 8.99,
+    veg: true,
+  },
+  {
+    id: 4,
+    name: "Beef Burger",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS6BD8AIhe84FBpmnQpPHOHJrTgYprZtdr9A&s",
+    cuisines: ["American"],
+    avgRating: 4.6,
+    deliveryTime: 25,
+    restaurantName: "Burger Haven",
+    cost: 9.99,
+    veg: false,
+  },
+  {
+    id: 5,
+    name: "Paneer Butter Masala",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS6BD8AIhe84FBpmnQpPHOHJrTgYprZtdr9A&s",
+    cuisines: ["Indian"],
+    avgRating: 4.7,
+    deliveryTime: 40,
+    restaurantName: "Curry House",
+    cost: 11.49,
+    veg: true,
+  },
+  {
+    id: 6,
+    name: "Sushi Platter",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL-uBClupV9-MstFCsD0uVRPFTtaga6GvToA&s",
+    cuisines: ["Japanese"],
+    avgRating: 4.8,
+    deliveryTime: 50,
+    restaurantName: "Sushi World",
+    cost: 15.99,
+    veg: false,
+  },
+  {
+    id: 7,
+    name: "Falafel Wrap",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1k6uuN7ezJwvc1fQ2amqXsPnallnsKrnL4g&s",
+    cuisines: ["Middle Eastern"],
+    avgRating: 4.3,
+    deliveryTime: 20,
+    restaurantName: "Falafel King",
+    cost: 7.99,
+    veg: true,
+  },
+  {
+    id: 8,
+    name: "Chicken Alfredo Pasta",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl9BoV7QkjID4XlV1v6iqsUSI_3e8B25BBtw&s",
+    cuisines: ["Italian"],
+    avgRating: 4.4,
+    deliveryTime: 35,
+    restaurantName: "Pasta Fresca",
+    cost: 13.99,
+    veg: false,
+  },
+  {
+    id: 9,
+    name: "Veggie Burger",
+    image:
+      "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHZlZ2dpZSUyMGJ1cmdlcnxlbnwwfHx8fDE2MTk2Mjg2NzA&ixlib=rb-1.2.1&q=80&w=400",
+    cuisines: ["American"],
+    avgRating: 4.1,
+    deliveryTime: 25,
+    restaurantName: "Green Delight",
+    cost: 8.49,
+    veg: true,
+  },
+  {
+    id: 10,
+    name: "Tacos",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoxYQ-pm6uhXc5pgdtEC0v7pm9OzdfiosEPA&s",
+    cuisines: ["Mexican"],
+    avgRating: 4.6,
+    deliveryTime: 30,
+    restaurantName: "Taco Fiesta",
+    cost: 9.99,
+    veg: false,
+  },
+  {
+    id: 11,
+    name: "Tacos",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTErBlfGrc2GRBGmCfqhjEtpuhxmlv7e_t3sg&s",
+    cuisines: ["Mexican"],
+    avgRating: 4.6,
+    deliveryTime: 30,
+    restaurantName: "Taco Fiesta",
+    cost: 9.99,
+    veg: false,
+  },
+  {
+    id: 12,
+    name: "Tacos",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS6BD8AIhe84FBpmnQpPHOHJrTgYprZtdr9A&s",
+    cuisines: ["Mexican"],
+    avgRating: 4.6,
+    deliveryTime: 30,
+    restaurantName: "Taco Fiesta",
+    cost: 9.99,
+    veg: false,
+  },
+];
+
+export default resList;
