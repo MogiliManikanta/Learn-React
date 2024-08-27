@@ -2,22 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./App.css";
 
-/* 
-* Header
-   -Logo
-   -Nav Items
-
-* Body
-    - Search
-    - RestaurantContainer
-    - RestaurantCards
-
-* Footer
-    -CopyRught
-    -Links
-    -Address
-    -Contact
-**/
 const Header = () => {
   return (
     <div className="header">
