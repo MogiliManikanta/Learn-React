@@ -43,20 +43,22 @@
 }
 
 /* Search Bar Styles */
-.filter {
+/* .filter {
   padding: 50px;
-  width: 100%; /* Full width */
+  width: 100%; /* Full width /
   max-width: 600px; /* Limit maximum width */
-  margin: 20px auto; /* Center search bar */
+/* margin: 20px auto; /* Center search bar / /
   border: 2px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+} */
 .filter-btn {
-  margin: 10px;
+  /* padding: 5px; */
   cursor: pointer;
 }
-
+.search-btn {
+  cursor: pointer;
+}
 /* Card Styles */
 .res-card {
   width: 220px; /* Slightly wider */
@@ -90,4 +92,29 @@
   justify-content: space-around; /* Distribute space */
   margin: 20px;
   gap: 20px; /* Space between cards */
+}
+
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.shimmer-card {
+  margin: 20px;
+  width: 300px;
+  height: 400px;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+.login {
+  padding: 0 20px;
+  cursor: pointer;
+  background-color: #ffffffe6;
+}
+.filter {
+  display: flex;
+  /* flex-wrap: wrap; */
+  padding: 0 5px;
+  margin: 5px;
 }
