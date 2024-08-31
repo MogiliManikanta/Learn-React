@@ -1,45 +1,34 @@
-import RestaurantCards from "./RestaurantCards";
-// import App from "../App";
-import resList from "../utils/mockData";
-import { useState, useEffect } from "react";
-import ShimmerUI from "./ShimmerUI";
+import RestaurantCards from "./RestaurantCards"; // Importing RestaurantCards component for rendering individual cards
+import resList from "../utils/mockData"; // (Unused import, can be removed)
+import { useState, useEffect } from "react"; // Importing hooks for managing state and lifecycle in functional components
+import ShimmerUI from "./ShimmerUI"; // Importing ShimmerUI component for showing a loading placeholder
 
 const Body = () => {
-  //   const arr = useState(resList);
-  //   const listOfRestaurants = arr[0];
-  //   const setListOfRestaurants = arr[1];
-
   // Local State Variables - Super powerful variables
-  const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [searchText, setSearchText] = useState("");
+  const [listOfRestaurants, setListOfRestaurants] = useState([]); // State to hold the list of all restaurants fetched from the API
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]); // State to hold the filtered list based on search/filter criteria
+  const [searchText, setSearchText] = useState(""); // State to hold the current search text
 
-  // Whenever state variables updates, react triggers a reconciliation cycle(re-renders the component)
+  // Whenever state variables update, React triggers a reconciliation cycle (re-renders the component)
   console.log("Body re Render");
-  // useEffect(() => {
-  //   console.log("useEffect Called");
-  // }, []);
-  // console.log("Body Rendered");
+
+  // Fetch the data when the component is mounted
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(); // Call fetchData on component mount
+  }, []); // Empty dependency array ensures this runs only once
 
   const fetchData = async () => {
-    const data = await fetch("https://fakestoreapi.com/products");
-    const json = await data.json();
+    // Async function to fetch data from the API
+    const data = await fetch("https://fakestoreapi.com/products"); // Fetch data from the provided API
+    const json = await data.json(); // Convert the response to JSON
     console.log(json);
-    setListOfRestaurants(json);
-    // Optional Chaining
-    // setListOfRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    setListOfRestaurants(json); // Set the fetched data to the listOfRestaurants state
+    setFilteredRestaurant(json); // Also set the same data to filteredRestaurant to initialize it
   };
 
-  // conditional Rendering
-  // if (listOfRestaurants.length === 0) {
-  //   return <ShimmerUI />;
-  //   // <h1>Loading.......</h1>;
-  // }
-
+  // Conditional Rendering - Show shimmer UI if the data is still loading
   return listOfRestaurants.length === 0 ? (
-    <ShimmerUI />
+    <ShimmerUI /> // Show the loading UI while data is being fetched
   ) : (
     <div className="body">
       <div className="filter">
@@ -47,16 +36,21 @@ const Body = () => {
           <input
             type="text"
             className="search-box"
-            value={searchText}
+            value={searchText} // Controlled input linked to searchText state
             onChange={(e) => {
-              setSearchText(e.target.value);
+              setSearchText(e.target.value); // Update searchText state as user types
             }}
           />
           <button
             className="search-btn"
             onClick={() => {
               // Filter the restaurant cards and update the UI
-              // Search Text
+              const filtered = listOfRestaurants.filter((res) => {
+                return res.title
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase()); // Case-insensitive search
+              });
+              setFilteredRestaurant(filtered); // Update the filteredRestaurant state with the filtered results
               console.log(searchText);
             }}
           >
@@ -66,22 +60,25 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
+            // Filter the restaurant list based on rating
             const filterList = listOfRestaurants.filter(
-              (list) => list.rating.rate < 4.5
+              (list) => list.rating.rate >= 4.5 // Filter out restaurants with ratings 4.5 or higher
             );
-            setListOfRestaurants(filterList);
-            console.log("Use State Called");
+            setFilteredRestaurant(filterList); // Update the filteredRestaurant state with the top-rated restaurants
+            console.log("Top rated filter applied");
           }}
         >
           Top rated Restaurants
         </button>
       </div>
       <div className="res-container">
-        {listOfRestaurants.map((restaurant) => (
+        {filteredRestaurant.map((restaurant) => (
+          // Render RestaurantCards for each restaurant in filteredRestaurant
           <RestaurantCards key={restaurant.id} resData={restaurant} />
         ))}
       </div>
     </div>
   );
 };
+
 export default Body;
