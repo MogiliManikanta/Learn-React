@@ -1,15 +1,38 @@
-const RestaurantCards = ({ resData }) => {
-  const { title, price, image, category, rating } = resData;
-  const { rate = "No Rating", count = 0 } = rating || {}; // Fallback for rating
+import { CDN_URL } from "../utils/constants";
+
+const RestaurantCards = (props) => {
+  const { resData } = props;
+
+  const {
+    cloudinaryImageId,
+    name,
+    cuisines,
+    avgRating,
+    costForTwo,
+    deliveryTime,
+  } = resData?.info;
 
   return (
-    <div className="res-card">
-      <img className="res-logo" alt="res-logo" src={image} />
-      <h3>{title}</h3>
-      <h4>{category}</h4>
-      <h4>{rate} ⭐</h4>
-      <h4>{count} reviews</h4>
-      <h3>${price}</h3>
+    <div
+      className="res-card"
+      style={{
+        backgroundColor: "#f0f0f0",
+      }}
+    >
+      <img
+        className="res-logo"
+        src={CDN_URL + cloudinaryImageId}
+        alt="Biryani"
+      />
+
+      <div className="res-card-content">
+        <h3>{name}</h3>
+        <hr />
+        <em>{cuisines.join(", ")}</em>
+        <h4>{avgRating} stars</h4>
+        <h4>₹{costForTwo}</h4>
+        <h4>{deliveryTime} </h4>
+      </div>
     </div>
   );
 };
