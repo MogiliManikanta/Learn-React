@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "./useOnlineStatus";
 
 const Header = () => {
   // State variable to manage button name
@@ -15,6 +16,7 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
+          {useOnlineStatus() ? "Check Status :" + "✅" : "🔴"}
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -26,6 +28,9 @@ const Header = () => {
           </li>
           <li>
             <Link to="/cart">Cart</Link>
+          </li>
+          <li>
+            <Link to="/grocery">Grocery</Link>
           </li>
           <button
             className="login"

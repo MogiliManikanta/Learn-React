@@ -2,6 +2,7 @@ import RestaurantCards from "./RestaurantCards"; // Importing RestaurantCards co
 import { useState, useEffect } from "react"; // Importing hooks for managing state and lifecycle in functional components
 import ShimmerUI from "./ShimmerUI"; // Importing ShimmerUI component for showing a loading placeholder
 import { Link } from "react-router-dom";
+import useOnlineStatus from "./useOnlineStatus";
 
 const Body = () => {
   // Local State Variables - Super powerful variables
@@ -49,6 +50,9 @@ const Body = () => {
       console.error("Error fetching data:", error);
     }
   };
+  const checkStatus = useOnlineStatus();
+  if (checkStatus === false)
+    return <h1>Please check your internet connection</h1>;
 
   // Conditional Rendering - Show shimmer UI if the data is still loading
   return listOfRestaurants.length === 0 ? (
