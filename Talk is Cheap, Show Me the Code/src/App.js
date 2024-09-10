@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import "../App.css";
+// import "../Talk is Cheap, Show Me the Code/index.css";
+import "./index.css";
 import Header from "./Components/Header";
 import Body from "./Components/Body"; // If you need the Body component later
 import About from "./Components/About";

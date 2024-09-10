@@ -1,6 +1,9 @@
-import ShimmerUI from "./ShimmerUI";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "./useRestaurantMenu";
+import ShimmerUI from "./ShimmerUI";
+import Cart from "./Cart";
+// import { useStateValue } from "../Context/StateProvider";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { resId } = useParams(); // Access resId correctly
@@ -15,35 +18,33 @@ const RestaurantMenu = () => {
     costForTwoMessage = "Cost information unavailable",
   } = resInfo?.cards?.[2]?.card?.card?.info || [];
 
-  const itemCards =
-    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
-      ?.card?.itemCards || [];
+  const categories =
+    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+      (c) =>
+        c.card?.["card"]?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    ) || []; // Default to an empty array if undefined
 
-  console.log(itemCards);
-
+  // Conditional check to ensure categories are defined before rendering
   return (
-    <div className="menu">
-      <h1>{name}</h1>
-      <p>
-        {cuisines.length > 0 ? cuisines.join(", ") : "Cuisines Unavailable"} -{" "}
-        {costForTwoMessage}
+    <div className="text-center">
+      <h1 className="font-bold my-6 text-2xl">{name}</h1>
+      <p className="font-bold text-lg">
+        {cuisines.join(", ")} - {costForTwoMessage}
       </p>
-      <h2>Menu</h2>
-      <ul>
-        {itemCards.length > 0 ? (
-          itemCards.map((item) => (
-            <li key={item.card.info.id}>
-              {item.card.info.name} - Rs : {item.card.info.price / 100}{" "}
-              <br></br>
-              {/* <br></br>*/}
-            </li>
-          ))
-        ) : (
-          <p>No menu items available.</p>
-        )}
-      </ul>
+
+      {/** Categories of Accordion */}
+      {categories.length > 0 ? (
+        categories.map((category) => (
+          <RestaurantCategory
+            key={category?.card?.card?.info?.["id"]}
+            data={category?.card?.card}
+          />
+        ))
+      ) : (
+        <p>No categories available.</p>
+      )}
     </div>
   );
 };
-
 export default RestaurantMenu;

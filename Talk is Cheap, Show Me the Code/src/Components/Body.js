@@ -1,4 +1,4 @@
-import RestaurantCards from "./RestaurantCards"; // Importing RestaurantCards component for rendering individual cards
+import RestaurantCards, { withPromotedLabel } from "./RestaurantCards"; // Importing RestaurantCards component for rendering individual cards
 import { useState, useEffect } from "react"; // Importing hooks for managing state and lifecycle in functional components
 import ShimmerUI from "./ShimmerUI"; // Importing ShimmerUI component for showing a loading placeholder
 import { Link } from "react-router-dom";
@@ -43,34 +43,40 @@ const Body = () => {
         console.warn("No restaurants found, using fallback data.");
         // You can set some fallback data here if necessary
       }
-
+      console.log("Data fetched:", restaurants);
       setListOfRestaurants(restaurants);
       setFilteredRestaurant(restaurants);
+      const labelPromotedRestaurants = withPromotedLabel(restaurants);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
   const checkStatus = useOnlineStatus();
   if (checkStatus === false)
-    return <h1>Please check your internet connection</h1>;
+    return (
+      <h1 className="text-red-600 text-center mt-8">
+        Please check your internet connection
+      </h1>
+    );
 
   // Conditional Rendering - Show shimmer UI if the data is still loading
   return listOfRestaurants.length === 0 ? (
     <ShimmerUI /> // Show the loading UI while data is being fetched
   ) : (
-    <div className="body">
-      <div className="filter">
-        <div className="search">
+    <div className="body mx-auto p-4 max-w-screen-xl">
+      <div className="filter flex justify-between items-center mb-4">
+        <div className="search flex">
           <input
             type="text"
-            className="search-box"
+            className="search-box border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={searchText} // Controlled input linked to searchText state
+            placeholder="Search for restaurants..."
             onChange={(e) => {
               setSearchText(e.target.value); // Update searchText state as user types
             }}
           />
           <button
-            className="search-btn"
+            className="search-btn ml-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
             onClick={() => {
               // Filter the restaurant cards and update the UI
               const filtered = listOfRestaurants.filter((res) => {
@@ -86,11 +92,11 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="filter-btn px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
           onClick={() => {
             // Filter the restaurant list based on rating
             const filterList = listOfRestaurants.filter(
-              (res) => res.info.avgRating >= 4.5 // Filter out restaurants with ratings 4 or higher
+              (res) => res.info.avgRating >= 4.5 // Filter out restaurants with ratings 4.5 or higher
             );
             setFilteredRestaurant(filterList); // Update the filteredRestaurant state with the top-rated restaurants
             console.log("Top rated filter applied");
@@ -99,14 +105,19 @@ const Body = () => {
           Top rated Restaurants
         </button>
       </div>
-      <div className="res-container">
+      <div className="res-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredRestaurant.map((restaurant) => (
           // Render RestaurantCards for each restaurant in filteredRestaurant
           <Link
             key={restaurant.info.id}
             to={"/restaurant/" + restaurant.info.id}
+            className="block hover:shadow-lg transition transform hover:-translate-y-1"
           >
-            <RestaurantCards resData={restaurant} />
+            {restaurant.info.promoted ? (
+              <withPromotedLabel resData={restaurant} />
+            ) : (
+              <RestaurantCards resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>
