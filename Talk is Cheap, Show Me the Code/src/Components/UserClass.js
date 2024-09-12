@@ -12,34 +12,34 @@ class UserClass extends React.Component {
     //   count: 0,
     //   deccount: 10,
     // };
-    console.log(this.props.name + "Child Class Component Constructor");
+    // console.log(this.props.name + "Child Class Component Constructor");
   }
 
   async componentDidMount() {
-    console.log(this.props.name + "Child Class Component  DidMounted");
+    // console.log(this.props.name + "Child Class Component  DidMounted");
     const fetchData = await fetch(
       "https://api.github.com/users/MogiliManikanta"
     );
     const data = await fetchData.json();
-    console.log(data);
+    // console.log(data);
     this.setState({
       userInfo: data,
     });
 
     this.timer = setInterval(() => {
-      console.log("Timer Called in ComponentDidMount");
+      // console.log("Timer Called in ComponentDidMount");
     }, 1000);
   }
   componentDidUpdate() {
-    console.log("Component DidUpdate Called");
+    // console.log("Component DidUpdate Called");
   }
 
   componentWillUnmount() {
     clearInterval(this.timer);
-    console.log("Component Will UnMount Called");
+    // console.log("Component Will UnMount Called");
   }
   render() {
-    console.log(this.props.name + "Child Class Component Rendered");
+    // console.log(this.props.name + "Child Class Component Rendered");
     // const { name, location } = this.props;
     // const { count, deccount } = this.state;
 

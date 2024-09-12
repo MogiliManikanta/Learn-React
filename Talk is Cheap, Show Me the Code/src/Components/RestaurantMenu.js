@@ -1,14 +1,13 @@
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "./useRestaurantMenu";
 import ShimmerUI from "./ShimmerUI";
-import Cart from "./Cart";
-// import { useStateValue } from "../Context/StateProvider";
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   const { resId } = useParams(); // Access resId correctly
   const resInfo = useRestaurantMenu(resId);
-
+  const [showIndex, setShowIndex] = useState(null);
   if (resInfo === null) return <ShimmerUI />;
 
   // Use optional chaining and provide fallback values to avoid destructuring errors
@@ -35,10 +34,15 @@ const RestaurantMenu = () => {
 
       {/** Categories of Accordion */}
       {categories.length > 0 ? (
-        categories.map((category) => (
+        categories.map((category, index) => (
+          // controlled Component
           <RestaurantCategory
             key={category?.card?.card?.info?.["id"]}
             data={category?.card?.card}
+            showItems={index === showIndex ? true : false}
+            setShowIndex={() =>
+              setShowIndex(index === showIndex ? null : index)
+            }
           />
         ))
       ) : (

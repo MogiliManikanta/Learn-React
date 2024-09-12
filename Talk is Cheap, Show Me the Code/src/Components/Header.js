@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "./useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   // State variable to manage button name
   const [btnNameReact, setBtnNameReact] = useState("Login");
 
-  console.log("Component re-rendered due to state change");
+  // Get online status once and store in a variable
+  const isOnline = useOnlineStatus();
+
+  // Consume the UserContext to get logged-in user
+  const { loggedInUser } = useContext(UserContext) || "Guest"; // Fallback to "Guest" if no user
 
   return (
     <div className="header bg-gray-100 shadow-md">
@@ -21,10 +26,10 @@ const Header = () => {
             <li>
               <span
                 className={`font-semibold ${
-                  useOnlineStatus() ? "text-green-600" : "text-red-600"
+                  isOnline ? "text-green-600" : "text-red-600"
                 }`}
               >
-                {useOnlineStatus() ? "✅ Online" : "🔴 Offline"}
+                {isOnline ? "✅ Online" : "🔴 Offline"}
               </span>
             </li>
             <li>
@@ -46,6 +51,11 @@ const Header = () => {
               <Link className="text-gray-600 hover:text-blue-500" to="/cart">
                 Cart
               </Link>
+            </li>
+            <li>
+              <span className="text-gray-600">
+                {loggedInUser} {/* Display logged-in user */}
+              </span>
             </li>
             <li>
               <Link className="text-gray-600 hover:text-blue-500" to="/grocery">

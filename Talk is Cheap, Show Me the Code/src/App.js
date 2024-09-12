@@ -1,9 +1,8 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-// import "../Talk is Cheap, Show Me the Code/index.css";
 import "./index.css";
 import Header from "./Components/Header";
-import Body from "./Components/Body"; // If you need the Body component later
+import Body from "./Components/Body";
 import About from "./Components/About";
 import Error from "./Components/Error";
 import ShimmerUI from "./Components/ShimmerUI";
@@ -11,33 +10,33 @@ import Contact from "./Components/Contact";
 import Cart from "./Components/Cart";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./Components/RestaurantMenu";
-import ShimmerUI from "./Components/ShimmerUI";
-// import Grocery from "./Components/Grocery";
+// import UserContext from "./utils/UserContext";
+
+const Grocery = lazy(() => import("./Components/Grocery"));
 
 const App = () => {
+  // // const [userName, setUserName] = useState({ name: "Guest" });
+
+  // // Authentication
+  // useEffect(() => {
+  //   // Simulating an API call to get the user name
+  //   const data = {
+  //     name: "Guest",
+  //   };
+
+  //   setUserName(data);
+  // }, []);
+
   return (
+    // <UserContext.Provider value={{ loggedInUser: userName.name }}>
     <div className="container">
       <Header />
       <Outlet />
     </div>
+    // </UserContext.Provider>
   );
 };
-/********
- *
- * Chunking
- * Code Splitting
- * Dynamically Importing
- * Dynamic Bundling
- * Lazy Loading
- * onDemand Loading
- *
- *
- *
- *
- *
- */
 
-const Grocery = lazy(() => import("./Components/Grocery"));
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -48,15 +47,15 @@ const appRouter = createBrowserRouter([
         element: <Body />,
       },
       {
-        path: "/about", // Removed leading slash
+        path: "about",
         element: <About />,
       },
       {
-        path: "/contact", // Removed leading slash
+        path: "contact",
         element: <Contact />,
       },
       {
-        path: "/grocery", // Removed leading slash
+        path: "grocery",
         element: (
           <Suspense fallback={<ShimmerUI />}>
             <Grocery />
@@ -64,19 +63,17 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/cart", // Removed leading slash
+        path: "cart",
         element: <Cart />,
       },
       {
-        path: "/restaurant/:resId", // Removed leading slash
+        path: "restaurant/:resId",
         element: <RestaurantMenu />,
       },
     ],
-    errorElement: <Error />, // Correctly placed for handling errors
+    errorElement: <Error />,
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={appRouter} />);
-
-export default App;
