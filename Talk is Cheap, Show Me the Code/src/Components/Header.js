@@ -3,6 +3,9 @@ import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "./useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
+import appStore from "../utils/appStore";
+import cartSlice from "../utils/cartSlice";
 
 const Header = () => {
   // State variable to manage button name
@@ -13,6 +16,9 @@ const Header = () => {
 
   // Consume the UserContext to get logged-in user
   const { loggedInUser } = useContext(UserContext) || "Guest"; // Fallback to "Guest" if no user
+
+  // SubScribing to the store using a Selector
+  const cartItems = useSelector((store) => store.cart.items);
 
   return (
     <div className="header bg-gray-100 shadow-md">
@@ -48,8 +54,11 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link className="text-gray-600 hover:text-blue-500" to="/cart">
-                Cart
+              <Link
+                className="text-gray-600 hover:text-blue-500 font-extrabold"
+                to="/cart"
+              >
+                Cart - ({cartItems.length} items)
               </Link>
             </li>
             <li>

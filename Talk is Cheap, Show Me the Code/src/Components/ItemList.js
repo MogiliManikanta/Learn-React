@@ -1,7 +1,14 @@
 import { CDN_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 
+import { useDispatch } from "react-redux";
 const ItemList = ({ items }) => {
   console.log(items);
+  const dispatch = useDispatch();
+
+  const handleClick = (item) => {
+    dispatch(addItem(item));
+  };
   return (
     <div className="space-y-4">
       {items.map((item) => (
@@ -31,7 +38,11 @@ const ItemList = ({ items }) => {
               alt={item.card.info.name}
               className="w-20 h-20 rounded-lg object-cover"
             />
-            <button className="absolute bottom-0 right-0 p-1.5 bg-green-500 text-white rounded-sm shadow-lg hover:bg-green-600 transition duration-200 text-sm">
+            <button
+              className="absolute bottom-0 right-0 p-1.5 bg-green-500 text-white rounded-sm shadow-lg hover:bg-green-600 transition duration-200 text-sm"
+              // onClick={handleClick}
+              onClick={() => handleClick(item)}
+            >
               Add +
             </button>
           </div>

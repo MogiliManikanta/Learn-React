@@ -11,6 +11,10 @@ import Cart from "./Components/Cart";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./Components/RestaurantMenu";
 // import UserContext from "./utils/UserContext";
+// import { Provider } from "react-redux";
+import { Provider } from "react-redux";
+
+import appStore from "./utils/appStore";
 
 const Grocery = lazy(() => import("./Components/Grocery"));
 
@@ -29,11 +33,12 @@ const App = () => {
 
   return (
     // <UserContext.Provider value={{ loggedInUser: userName.name }}>
-    <div className="container">
-      <Header />
-      <Outlet />
-    </div>
-    // </UserContext.Provider>
+    <Provider store={appStore}>
+      <div className="container">
+        <Header />
+        <Outlet />
+      </div>
+    </Provider>
   );
 };
 
